@@ -4,7 +4,7 @@ import {archiveTask, pinTask} from 'react-redux';
 import PropTypes from 'prop-types';
 import Task from './Task';
 
-const PureTaskList = ({
+export const PureTaskList = ({
   loading,
   tasks,
   onPinTask,
@@ -23,7 +23,6 @@ const PureTaskList = ({
       </span>
     </div>
   );
-
   if (loading) {
     return (
       <div className="list-items">
@@ -36,7 +35,6 @@ const PureTaskList = ({
       </div>
     );
   }
-
   if (tasks.length === 0) {
     return (
       <div className="list-items">
@@ -48,14 +46,12 @@ const PureTaskList = ({
       </div>
     );
   }
-
   const tasksInOrder = [
-    ...tasks.filter(t => t.state === "TASK_PINNED"),
+    ...tasks.filter(t => t.state === 'TASK_PINNED'),
     ...tasks.filter(t => t.state !== 'TASK_PINNED'),
   ];
-
   return (
-    <div>
+    <div className="list-items">
       {tasksInOrder.map(task => (
         <Task key={task.id} task={task} {...events} />
       ))}
@@ -66,8 +62,8 @@ const PureTaskList = ({
 PureTaskList.propTypes = {
   loading: PropTypes.bool,
   tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  onPinTask: PropTypes.func,
-  onArchiveTask: PropTypes.func,
+  onPinTask: PropTypes.func.isRequired,
+  onArchiveTask: PropTypes.func.isRequired,
 };
 
 PureTaskList.defaultProps = {
