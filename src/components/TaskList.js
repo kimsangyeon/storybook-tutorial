@@ -4,7 +4,7 @@ import {archiveTask, pinTask} from 'react-redux';
 import PropTypes from 'prop-types';
 import Task from './Task';
 
-const PureTaskList = ({
+export const PureTaskList = ({
   loading,
   tasks,
   onPinTask,
